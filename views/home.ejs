@@ -3,10 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
 <body>
     <%- include('partials/header') %>
-    <h1>This is Home Page!</h1>  
+
+   <section class="hero">
+  <div class="hero-content">
+    <h1>Enjoy Our <br><span>Delicious Food</span></h1>
+    <p>Freshly prepared meals delivered straight to your door.</p>
+    <a href="/explore" style="text-decoration: none;">
+  <button class="cta-btn">Order Now <i class="fa-solid fa-arrow-right"></i></button>
+</a>
+  </div>
+</section>
+    <section class="categories">
+  <h2 class="section-title">Craving Something?</h2>
+  
+  <div class="category-grid">
+    <a href="/" class="category-card">
+      <img src="/images/pizza-icon.png" alt="Pizza">
+      <span>Pizza</span>
+    </a>
+
+    <a href="/" class="category-card">
+      <img src="/images/burger-icon.png" alt="Burger">
+      <span>Burgers</span>
+    </a>
+
+    <a href="/" class="category-card">
+      <img src="/images/thali-icon.png" alt="North Indian">
+      <span>North Indian</span>
+    </a>
+
+    <a href="/" class="category-card">
+      <img src="/images/noodles-icon.png" alt="Chinese">
+      <span>Chinese</span>
+    </a>
+  </div>
+</section>
+
+    <section class="options-container">
+        <a href="/fooditems" class="ordering btns"  style=" text-decoration: none;">
+        <div class="option-card">
+            <img src="/images/pizza-order.jpg" alt="Order Online">
+            <div class="option-text" >
+                <h3>Order Online</h3>
+                <p>Hot and delicious, right to your door</p>
+            </div>
+        </div>
+        </a>
+        <a href="/explore"  style=" text-decoration: none;">
+        <div class="option-card">
+            <img src="/images/dining-service.jpg" alt="Dining">
+            <div class="option-text">
+                <h3>Dining</h3>
+                <p>Comfort Food, Served with a Smile</p>
+            </div>
+        </div>
+        </a>
+    </section>
+     <%- include('partials/footer') %>
 </body>
 </html>
