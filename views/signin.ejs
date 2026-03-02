@@ -1,0 +1,13 @@
+<%- include('partials/header') %>
+<div class="auth-container">
+    <form action="/signin" method="POST" class="auth-form">
+        <h2>Create Account</h2>
+        <% if (error) { %> <p class="error"><%= error %></p> <% } %>
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit" class="cta-btn">Create Account</button>
+        <p>Already have an account? <a href="/login">Login here</a></p>
+    </form>
+</div>
+<%- include('partials/footer') %>

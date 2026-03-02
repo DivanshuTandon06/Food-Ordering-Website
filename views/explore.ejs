@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <%- include('partials/header') %>
+  <h1>this is <%=  title  %> page . Here you can see list of restraunts </h1>
+
+  <section class="subway">
+    <a href="/subway" class="subway-enter" style="text-decoration: none; color: black;">
+        <div class="subway-container-content">
+            <img src="/images/subway-image.jpg" alt="Subway">
+            <div class="subway-text">
+                <h1>Subway</h1>
+                <p>Have most delicious subways here</p>
+            </div>
+        </div>
+    </a>
+  </section>
+   <%- include('partials/footer') %>
+</body>
+</html>
