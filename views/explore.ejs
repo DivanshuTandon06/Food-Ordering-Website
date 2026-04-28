@@ -3,201 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><%= title || 'Dining' %></title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-   <%- include('partials/header') %>
-  
+    <%- include('partials/header') %>
 
-    <button class="but1" onclick="location.href='Lapinoze.html'">
-        <div class="d1">
-            <div>
-                <img class="im1"
-                    src="/images/lapinoz.jpg"
-                    alt="">
-            </div>
-            <div>
-                <p class="p1">La Pino's Pizza</p>
-                <div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">4.3</p>
-                        <p class="p3">Dinning Ratings</p>
-                    </div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">3.5</p>
-                        <p class="p3">Delivery Ratings</p>
+    <main class="dining-page">
+        <section class="content-hero dining-hero">
+            <p class="content-eyebrow">Dining</p>
+            <h1>Dine In and Try Chef Special of the Day</h1>
+            <p class="content-lead">No Subway section here now. You can directly add today's chef special to cart.</p>
+        </section>
 
-                    </div>
-                    <p class="p2">Pizza, Pasta,Italian, Fast Food</p>
+        <section class="chef-special-banner">
+            <div class="chef-special-copy">
+                <span class="chef-special-badge">Chef Special of the Day</span>
+                <h2>Paneer Butter Masala Platter</h2>
+                <p>Served with butter naan, salad and a refreshing drink. Perfect for a relaxed dining meal.</p>
+                <div class="chef-special-meta">
+                    <span>Prep Time: 18 mins</span>
+                    <span>Dining Only</span>
+                    <span>₹299</span>
+                </div>
+
+                <div
+                    class="item-cart-controls chef-special-cart-controls"
+                    data-name="Paneer Butter Masala Platter"
+                    data-price="299"
+                    data-image="/images/thali-icon.png"
+                >
+                    <button type="button" class="pizza-minus-btn">-</button>
+                    <span class="pizza-item-count">0</span>
+                    <button type="button" class="pizza-add-btn pizza-plus-btn">Add +</button>
                 </div>
             </div>
 
-        </div>
-    </button>
-    <button class="but1" onclick="location.href='burger.html'">
-        <div class="d1">
-            <div>
-                <img class="im1"
-                    src="/images/burger.jpg"
-                    alt="">
+            <div class="chef-special-image">
+                <img src="/images/thali-icon.png" alt="Chef special of the day">
             </div>
-            <div>
-                <p class="p1">Burger King</p>
-                <div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">3.8</p>
-                        <p class="p3">Dinning Ratings</p>
-                    </div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">4.0</p>
-                        <p class="p3">Delivery Ratings</p>
+        </section>
+    </main>
 
-                    </div>
-                    <p class="p2">Burger, Fast Food, Beverages</p>
-                </div>
-            </div>
-
-        </div>
-    </button>
-    <button class="but1" onclick="location.href='Subway.html'">
-        <div class="d1">
-            <div>
-                <img class="im1"
-                    src="/images/subway-image.jpg"
-                    alt="">
-            </div>
-            <div>
-                <p class="p1">Subway</p>
-                <div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">3.0</p>
-                        <p class="p3">Dinning Ratings</p>
-                    </div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">4.1</p>
-                        <p class="p3">Delivery Ratings</p>
-
-                    </div>
-                    <p class="p2">Healthy Food, Sandwich, Fast Food, Wraps, Salad, Beverages</p>
-                </div>
-            </div>
-
-        </div>
-    </button>
-    <button class="but1" onclick="location.href='Kfc.html'">
-        <div class="d1">
-            <div>
-                <img class="im1"
-                    src="/images/kfc.jpg"
-                    alt="">
-            </div>
-            <div>
-                <p class="p1">KFC</p>
-                <div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">4.4</p>
-                        <p class="p3">Dinning Ratings</p>
-                    </div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">4.4</p>
-                        <p class="p3">Delivery Ratings</p>
-
-                    </div>
-                    <p class="p2">Burgers, Fast Food</p>
-                </div>
-            </div>
-
-        </div>
-    </button>
-    <button class="but1" onclick="location.href='Starbucks_coff.html'">
-        <div class="d1">
-            <div>
-                <img class="im1"
-                    src="https://th.bing.com/th/id/OIP.r9WjyS2siEPBC6cCXRCc5AHaFU?rs=1&pid=ImgDetMain"
-                    alt="">
-            </div>
-            <div>
-                <p class="p1">Starbucks Coffee</p>
-                <div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">4.0</p>
-                        <p class="p3">Dinning Ratings</p>
-                    </div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">4.1</p>
-                        <p class="p3">Delivery Ratings</p>
-
-                    </div>
-                    <p class="p2">Cafe, Coffee</p>
-                </div>
-            </div>
-
-        </div>
-    </button>
-    <button class="but1" onclick="location.href='Roll_express.html'">
-        <div class="d1">
-            <div>
-                <img class="im1"
-                    src="/images/roli.jpg"
-                    alt="">
-            </div>
-            <div>
-                <p class="p1">Roll Express</p>
-                <div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">4.3</p>
-                        <p class="p3">Dinning Ratings</p>
-                    </div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">4.3</p>
-                        <p class="p3">Delivery Ratings</p>
-
-                    </div>
-                    <p class="p2">Beverages, Pizzaa</p>
-                </div>
-            </div>
-
-        </div>
-    </button>
-    <button class="but1" onclick="location.href='Ghar_K_rasoi.html'">
-        <div class="d1">
-            <div>
-                <img class="im1"
-                    src="/images/ghrkirasoi.jpg"
-                    alt="">
-            </div>
-            <div>
-                <p class="p1">Ghar Ki Rasoi</p>
-                <div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">4.0</p>
-                        <p class="p3">Dinning Ratings</p>
-                    </div>
-                    <div class="d2">
-                        <img class="im2" src="/images/star.jpg" alt="">
-                        <p class="p4">3.1</p>
-                        <p class="p3">Delivery Ratings</p>
-
-                    </div>
-                    <p class="p2">Indian</p>
-                </div>
-            </div>
-
-        </div>
-    </button>
-   <%- include('partials/footer') %>
+    <script src="/js/menu-cart.js"></script>
+    <%- include('partials/footer') %>
 </body>
 </html>

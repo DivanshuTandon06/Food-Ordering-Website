@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title || 'North Indian Menu' %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <%
+    const fallbackItems = [
+      { name: 'Paneer Butter Masala', price: 289, image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=1200&q=80', description: 'Creamy tomato gravy with paneer cubes.' },
+      { name: 'Dal Makhani', price: 229, image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1200&q=80', description: 'Slow-cooked black lentils with butter.' },
+      { name: 'Shahi Paneer', price: 279, image: 'https://images.unsplash.com/photo-1690401767645-595de0e0e5f8?auto=format&fit=crop&w=1200&q=80', description: 'Royal paneer curry in rich gravy.' }
+    ];
+
+    const restaurantData = restaurant || {
+      name: 'Punjab Rasoi',
+      diningRating: 4.4,
+      deliveryRating: 4.2,
+      description: 'Rich gravies, buttery breads and aromatic spices',
+      banner1: 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1400&q=80'
+    };
+
+    const items = (menu && menu.length) ? menu : fallbackItems;
+  %>
+
+  <main class="pizza-page compact-hero-page">
+    <section class="pizza-hero">
+      <div class="pizza-hero-content">
+        <p class="pizza-eyebrow">Indian Taste</p>
+        <h1><%= restaurantData.name %></h1>
+        <p class="pizza-subtitle"><%= restaurantData.description %></p>
+
+        <div class="pizza-ratings">
+          <div class="pizza-rating-card">
+            <span>Dining</span>
+            <strong><%= restaurantData.diningRating || '4.0' %> ★</strong>
+          </div>
+          <div class="pizza-rating-card">
+            <span>Delivery</span>
+            <strong><%= restaurantData.deliveryRating || '4.0' %> ★</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="pizza-hero-art">
+        <img
+          src="<%= restaurantData.banner1 %>"
+          alt="North Indian food"
+          onerror="this.src='https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1400&q=80'"
+        >
+      </div>
+    </section>
+
+    <section class="pizza-menu-wrap">
+      <div class="pizza-menu-header">
+        <h2>North Indian Specials</h2>
+        <div class="pizza-chip-row" aria-label="Popular tags">
+          <span class="pizza-chip">Rich Gravy</span>
+          <span class="pizza-chip">Tandoori</span>
+          <span class="pizza-chip">Punjabi</span>
+          <span class="pizza-chip">Comfort Meal</span>
+        </div>
+      </div>
+
+      <div class="pizza-grid">
+        <% items.forEach((item) => { %>
+          <article class="pizza-card">
+            <div class="pizza-img-wrap">
+              <img
+                src="<%= item.image %>"
+                class="pizza-img"
+                alt="<%= item.name %>"
+                onerror="this.src='https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=1200&q=80'"
+              >
+            </div>
+
+            <div class="pizza-info">
+              <h3><%= item.name %></h3>
+              <p><%= item.description || 'Authentic North Indian dish.' %></p>
+              <div class="pizza-card-bottom">
+                <span class="pizza-price">₹ <%= item.price %></span>
+                <div
+                  class="item-cart-controls"
+                  data-name="<%= item.name %>"
+                  data-price="<%= item.price %>"
+                  data-image="<%= item.image %>"
+                >
+                  <button type="button" class="pizza-minus-btn">-</button>
+                  <span class="pizza-item-count">0</span>
+                  <button type="button" class="pizza-add-btn pizza-plus-btn">Add +</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/menu-cart.js"></script>
+  <%- include('partials/footer') %>
+</body>
+</html>

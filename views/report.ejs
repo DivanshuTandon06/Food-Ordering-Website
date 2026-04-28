@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main class="contact-container report-page">
+  <section class="contact-hero">
+    <h1>Report an Issue</h1>
+    <p>Share any problem related to orders, payment, delivery, or app behavior.</p>
+  </section>
+
+  <div class="contact-wrapper">
+    <form action="/report" method="POST" class="contact-form">
+      <% if (success) { %>
+        <p class="report-success">Thanks, your report has been submitted successfully.</p>
+      <% } %>
+
+      <div class="input-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="input-group">
+        <label for="issueType">Issue Type</label>
+        <select id="issueType" name="issueType" required>
+          <option value="" disabled selected>Select issue type</option>
+          <option value="order">Order issue</option>
+          <option value="payment">Payment issue</option>
+          <option value="delivery">Delivery issue</option>
+          <option value="technical">Technical issue</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label for="details">Issue Details</label>
+        <textarea id="details" name="details" rows="6" placeholder="Describe the issue in detail" required></textarea>
+      </div>
+
+      <button type="submit" class="cta-btn">Submit Report</button>
+    </form>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
+
+</body>
+</html>

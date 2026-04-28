@@ -4,65 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
-    <link rel="stylesheet" href="/css/style.css">
-<body>
-    <%- include('partials/header') %>
 
-   <section class="hero">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<%- include('partials/header') %>
+
+<!-- HERO SECTION -->
+<section class="hero">
   <div class="hero-content">
     <h1>Enjoy Our <br><span>Delicious Food</span></h1>
     <p>Freshly prepared meals delivered straight to your door.</p>
-    <a href="/explore" style="text-decoration: none;">
-  <button class="cta-btn">Order Now <i class="fa-solid fa-arrow-right"></i></button>
-</a>
+
+    <a href="/pizza">
+      <button class="cta-btn">
+        Order Now
+      </button>
+    </a>
   </div>
 </section>
-    <section class="categories">
+
+<!-- CATEGORY SECTION -->
+<section class="categories">
+
   <h2 class="section-title">Craving Something?</h2>
-  
+
   <div class="category-grid">
-    <a href="/" class="category-card">
+
+    <!-- 🍕 PIZZA -->
+    <a href="/pizza" class="category-card">
       <img src="/images/pizza-icon.png" alt="Pizza">
       <span>Pizza</span>
     </a>
 
-    <a href="/" class="category-card">
+    <!-- 🍔 BURGER -->
+    <a href="/burger" class="category-card">
       <img src="/images/burger-icon.png" alt="Burger">
       <span>Burgers</span>
     </a>
 
-    <a href="/" class="category-card">
+    <!-- 🍛 NORTH INDIAN -->
+    <a href="/north-indian" class="category-card">
       <img src="/images/thali-icon.png" alt="North Indian">
       <span>North Indian</span>
     </a>
 
-    <a href="/" class="category-card">
+    <!-- 🍜 CHINESE -->
+    <a href="/chinese" class="category-card">
       <img src="/images/noodles-icon.png" alt="Chinese">
       <span>Chinese</span>
     </a>
+
   </div>
+
 </section>
 
-    <section class="options-container">
-        <a href="/fooditems" class="ordering btns"  style=" text-decoration: none;">
-        <div class="option-card">
-            <img src="/images/pizza-order.jpg" alt="Order Online">
-            <div class="option-text" >
-                <h3>Order Online</h3>
-                <p>Hot and delicious, right to your door</p>
-            </div>
-        </div>
-        </a>
-        <a href="/explore"  style=" text-decoration: none;">
-        <div class="option-card">
-            <img src="/images/dining-service.jpg" alt="Dining">
-            <div class="option-text">
-                <h3>Dining</h3>
-                <p>Comfort Food, Served with a Smile</p>
-            </div>
-        </div>
-        </a>
-    </section>
-     <%- include('partials/footer') %>
+<!-- OPTIONS SECTION -->
+<section class="options-container">
+
+  <!-- ORDER ONLINE -->
+  <a href="/pizza" class="ordering btns">
+    <div class="option-card">
+      <img src="/images/pizza-order.jpg" alt="Order Online">
+      <div class="option-text">
+        <h3>Order Online</h3>
+        <p>Hot and delicious, right to your door</p>
+      </div>
+    </div>
+  </a>
+
+  <!-- DINING -->
+  <a href="/explore">
+    <div class="option-card">
+      <img src="/images/dining-service.jpg" alt="Dining">
+      <div class="option-text">
+        <h3>Dining</h3>
+        <p>Comfort Food, Served with a Smile</p>
+      </div>
+    </div>
+  </a>
+
+</section>
+
+<%- include('partials/footer') %>
+
 </body>
 </html>

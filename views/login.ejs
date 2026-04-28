@@ -1,12 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= title || "Login" %></title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
 <%- include('partials/header') %>
+
 <div class="auth-container">
     <form action="/login" method="POST" class="auth-form">
         <h2>Login</h2>
-        <% if (error) { %> <p class="error"><%= error %></p> <% } %>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit" class="cta-btn">Login</button>
-        <p>Don't have an account? <a href="/signin">Sign up here</a></p>
+
+        
+        <% if (error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+
+        <!-- EMAIL -->
+        <input 
+            type="email" 
+            name="email" 
+            placeholder="Enter your email" 
+            required
+        >
+
+        <!-- PASSWORD -->
+        <input 
+            type="password" 
+            name="password" 
+            placeholder="Enter your password" 
+            required
+        >
+
+        <!-- BUTTON -->
+        <button type="submit" class="cta-btn">
+            Login <i class="fa-solid fa-right-to-bracket"></i>
+        </button>
+
+        <a href="/auth/google" class="google-auth-link">
+            <i class="fa-brands fa-google"></i>
+            Login with Google
+        </a>
+
+        <!-- LINK -->
+        <p>
+            Don't have an account? 
+            <a href="/signin">Sign up here</a>
+        </p>
     </form>
 </div>
+
 <%- include('partials/footer') %>
+
+</body>
+</html>

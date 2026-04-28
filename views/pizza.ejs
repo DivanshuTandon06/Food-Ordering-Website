@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title || 'Pizza Menu' %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <%
+    const fallbackPizzas = [
+      { name: 'Margherita', price: 299, image: '/images/pizza1.jpg', description: 'Tomato, basil and mozzarella.' },
+      { name: 'Farmhouse', price: 399, image: '/images/pizza2.jpg', description: 'Onion, capsicum, mushroom and cheese.' },
+      { name: 'Veg Extravaganza', price: 499, image: '/images/pizza3.jpg', description: 'Loaded veggies and golden cheese.' },
+      { name: 'Cheese Burst', price: 349, image: '/images/pizza4.jpg', description: 'Extra cheese layered in every bite.' },
+      { name: 'Paneer Tikka', price: 459, image: '/images/pizza5.jpg', description: 'Spiced paneer with smoky flavor.' },
+      { name: 'Mexican Green Wave', price: 429, image: '/images/pizza6.jpg', description: 'Jalapeno and crunchy toppings.' }
+    ];
+
+    const restaurantData = restaurant || {
+      name: 'Foodie Heaven Pizza',
+      diningRating: 4.2,
+      deliveryRating: 4.4,
+      description: 'Wood-fired pizzas and cheesy signatures',
+      banner1: '/images/pizza-banner.jpg'
+    };
+
+    const pizzaItems = (menu && menu.length) ? menu : fallbackPizzas;
+  %>
+
+  <main class="pizza-page">
+    <section class="pizza-hero">
+      <div class="pizza-hero-content">
+        <p class="pizza-eyebrow">Fresh Out Of The Oven</p>
+        <h1><%= restaurantData.name %></h1>
+        <p class="pizza-subtitle"><%= restaurantData.description %></p>
+
+        <div class="pizza-ratings">
+          <div class="pizza-rating-card">
+            <span>Dining</span>
+            <strong><%= restaurantData.diningRating || '4.0' %> ★</strong>
+          </div>
+          <div class="pizza-rating-card">
+            <span>Delivery</span>
+            <strong><%= restaurantData.deliveryRating || '4.0' %> ★</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="pizza-hero-art">
+        <img
+          src="<%= restaurantData.banner1 || '/images/pizza-banner.jpg' %>"
+          alt="Fresh pizza"
+          onerror="this.src='https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1200&q=80'"
+        >
+      </div>
+    </section>
+
+    <section class="pizza-menu-wrap">
+      <div class="pizza-menu-header">
+        <h2>Signature Pizzas</h2>
+        <div class="pizza-chip-row" aria-label="Popular tags">
+          <span class="pizza-chip">Best Seller</span>
+          <span class="pizza-chip">Veg</span>
+          <span class="pizza-chip">Cheese Burst</span>
+          <span class="pizza-chip">Spicy</span>
+        </div>
+      </div>
+
+      <div class="pizza-grid">
+        <% pizzaItems.forEach((pizza) => { %>
+          <article class="pizza-card">
+            <div class="pizza-img-wrap">
+              <img
+                src="<%= pizza.image %>"
+                class="pizza-img"
+                alt="<%= pizza.name %>"
+                onerror="this.src='https://images.unsplash.com/photo-1604382355076-af4b0eb60143?auto=format&fit=crop&w=900&q=80'"
+              >
+            </div>
+
+            <div class="pizza-info">
+              <h3><%= pizza.name %></h3>
+              <p><%= pizza.description || 'Crispy crust, rich sauce and premium toppings.' %></p>
+              <div class="pizza-card-bottom">
+                <span class="pizza-price">₹ <%= pizza.price %></span>
+                <div
+                  class="item-cart-controls"
+                  data-name="<%= pizza.name %>"
+                  data-price="<%= pizza.price %>"
+                  data-image="<%= pizza.image %>"
+                >
+                  <button type="button" class="pizza-minus-btn">-</button>
+                  <span class="pizza-item-count">0</span>
+                  <button type="button" class="pizza-add-btn pizza-plus-btn">Add +</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/menu-cart.js"></script>
+  <%- include('partials/footer') %>
+</body>
+</html>

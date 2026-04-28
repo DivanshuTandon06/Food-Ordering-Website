@@ -1,11 +1,27 @@
-<%- include('partials/header') %> <main class="contact-container">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title || 'Contact Us' %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main class="contact-container">
     <section class="contact-hero">
-        <h1>Get in Touch</h1>
-        <p>Have a question about your order or want to partner with Foodie Heaven?</p>
+        <h1>Contact Us</h1>
+        <p>Need help with order, payment, or partner support? Send us your query.</p>
     </section>
 
     <div class="contact-wrapper">
         <form action="/contact" method="POST" class="contact-form">
+            <% if (success) { %>
+                <p class="contact-success">Your message has been sent successfully.</p>
+            <% } %>
+
             <div class="input-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" required>
@@ -18,9 +34,12 @@
                 <label for="message">Your Message</label>
                 <textarea id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
             </div>
-            <button type="submit" class="cta-btn">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+            <button type="submit" class="cta-btn">Send Message</button>
         </form>
     </div>
 </main>
 
 <%- include('partials/footer') %>
+
+</body>
+</html>

@@ -4,9 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-   <%- include('partials/header') %>
-   <%- include('partials/footer') %>
+    <%- include('partials/header') %>
+
+    <main class="offers-page">
+        <section class="offers-hero">
+            <p class="offers-eyebrow">Exclusive Deals</p>
+            <h1>Best Offers For Today</h1>
+            <p>Save more on your favorite meals. Limited-time discounts are live now.</p>
+        </section>
+
+        <section class="offers-grid">
+            <article class="offer-card">
+                <span class="offer-badge">Flat 40% OFF</span>
+                <h2>Pizza Party Deal</h2>
+                <p>Get up to 40% off on selected pizzas for orders above Rs 499.</p>
+                <p class="offer-code">Code: PIZZA40</p>
+                <a href="/cart?offer=PIZZA40" class="offer-link">Apply Offer</a>
+            </article>
+
+            <article class="offer-card">
+                <span class="offer-badge">Buy 1 Get 1</span>
+                <h2>Burger Combo Day</h2>
+                <p>Order one burger and get one free on selected combos.</p>
+                <p class="offer-code">Code: BURGERBOGO</p>
+                <a href="/cart?offer=BURGERBOGO" class="offer-link">Apply Offer</a>
+            </article>
+
+            <article class="offer-card">
+                <span class="offer-badge">Save Rs 120</span>
+                <h2>North Indian Feast</h2>
+                <p>Get instant Rs 120 off on orders above Rs 699.</p>
+                <p class="offer-code">Code: NORTH120</p>
+                <a href="/cart?offer=NORTH120" class="offer-link">Apply Offer</a>
+            </article>
+
+            <article class="offer-card">
+                <span class="offer-badge">Free Delivery</span>
+                <h2>Chinese Special</h2>
+                <p>No delivery fee on Chinese orders above Rs 299.</p>
+                <p class="offer-code">Code: CHINESEFREE</p>
+                <a href="/cart?offer=CHINESEFREE" class="offer-link">Apply Offer</a>
+            </article>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
 </body>
 </html>

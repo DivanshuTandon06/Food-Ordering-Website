@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title || 'Search' %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main class="pizza-page compact-hero-page">
+    <section class="pizza-menu-wrap" style="margin-top: 32px;">
+      <div class="pizza-menu-header">
+        <h2>Search Results</h2>
+        <% if (query) { %>
+          <p style="margin-top: 8px; color: #5a4b42;">Showing results for "<strong><%= query %></strong>"</p>
+        <% } else { %>
+          <p style="margin-top: 8px; color: #5a4b42;">Type any dish in the top search bar to find items quickly.</p>
+        <% } %>
+      </div>
+
+      <% if (!query || !results.length) { %>
+        <div style="background: #fff5eb; border: 1px solid #f1dcc6; border-radius: 14px; padding: 18px; color: #5e3d1f;">
+          <% if (!query) { %>
+            Start with a keyword like pizza, burger, paneer, noodles.
+          <% } else { %>
+            No matching items found. Try a shorter keyword.
+          <% } %>
+        </div>
+      <% } else { %>
+        <div class="pizza-grid">
+          <% results.forEach((item) => { %>
+            <article class="pizza-card">
+              <div class="pizza-img-wrap">
+                <img
+                  src="<%= item.image %>"
+                  class="pizza-img"
+                  alt="<%= item.name %>"
+                  onerror="this.src='/images/pizza-icon.png'"
+                >
+              </div>
+
+              <div class="pizza-info">
+                <h3><%= item.name %></h3>
+                <p><%= item.description %></p>
+                <div class="pizza-card-bottom" style="align-items: center;">
+                  <span class="pizza-price">₹ <%= item.price %></span>
+                  <div
+                    class="item-cart-controls"
+                    data-name="<%= item.name %>"
+                    data-price="<%= item.price %>"
+                    data-image="<%= item.image %>"
+                  >
+                    <button type="button" class="pizza-minus-btn">-</button>
+                    <span class="pizza-item-count">0</span>
+                    <button type="button" class="pizza-add-btn pizza-plus-btn">Add +</button>
+                  </div>
+                </div>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      <% } %>
+    </section>
+  </main>
+
+  <script src="/js/menu-cart.js"></script>
+  <%- include('partials/footer') %>
+</body>
+</html>

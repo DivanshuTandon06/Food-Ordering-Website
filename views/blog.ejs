@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main class="content-page blog-page">
+  <section class="content-hero">
+    <p class="content-eyebrow">Blog</p>
+    <h1>Stories, updates, and food ideas we actually care about.</h1>
+    <p class="content-lead">
+      Quick reads about menu highlights, ordering tips, and what we’re building next.
+    </p>
+  </section>
+
+  <section class="blog-grid">
+    <article class="blog-card featured">
+      <span class="blog-tag">Featured</span>
+      <h2>How we choose the dishes we list</h2>
+      <p>We focus on taste, consistency, and delivery performance so the menu stays strong, not just large.</p>
+      <a href="/contact">Read more</a>
+    </article>
+
+    <article class="blog-card">
+      <span class="blog-tag">Updates</span>
+      <h2>New category pages are live</h2>
+      <p>Burger, North Indian, Chinese, and pizza pages now follow the same clean ordering flow.</p>
+      <a href="/burger">Explore menu</a>
+    </article>
+
+    <article class="blog-card">
+      <span class="blog-tag">Tips</span>
+      <h2>How to get faster checkout</h2>
+      <p>Keep your profile ready and use the cart after login for a smoother ordering experience.</p>
+      <a href="/login">Login now</a>
+    </article>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
+
+</body>
+</html>

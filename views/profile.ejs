@@ -1,0 +1,34 @@
+<%- include('partials/header') %>
+
+<div class="profile-container">
+    <div class="profile-card">
+
+        <!-- 🔥 PROFILE IMAGE -->
+        <img 
+            src="<%= user.profilePic && user.profilePic.startsWith('http') 
+                    ? user.profilePic 
+                    : '/uploads/' + (user.profilePic || 'default.png') %>" 
+            class="profile-img"
+            onerror="this.src='/images/default.png'"
+        >
+
+        <h2><%= user.username %></h2>
+        <p><%= user.email %></p>
+
+        <!-- BUTTONS -->
+        <a href="/edit-profile" class="edit-btn">Edit Profile</a>
+        <a href="/logout" class="logout-btn">Logout</a>
+
+        <!-- 🔥 DELETE ACCOUNT -->
+        <form 
+            action="/delete-account" 
+            method="POST" 
+            onsubmit="return confirm('Are you sure? This will delete your account permanently!');"
+        >
+            <button class="delete-btn">Delete Account</button>
+        </form>
+
+    </div>
+</div>
+
+<%- include('partials/footer') %>

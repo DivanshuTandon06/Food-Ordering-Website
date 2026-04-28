@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<%- include('partials/header') %>
+
+<main class="content-page">
+  <section class="content-hero">
+    <p class="content-eyebrow">Security</p>
+    <h1>Built-in practices to keep your account and data safe.</h1>
+    <p class="content-lead">
+      We actively protect the platform using authentication controls, secure sessions, and monitoring against misuse.
+    </p>
+  </section>
+
+  <section class="policy-list">
+    <article class="policy-card">
+      <h2>Secure Authentication</h2>
+      <p>We support encrypted login workflows and trusted identity providers, including Google sign-in integration.</p>
+    </article>
+
+    <article class="policy-card">
+      <h2>Session Protection</h2>
+      <p>Automatic session timeout helps reduce unauthorized access risk when a user stays inactive for long periods.</p>
+    </article>
+
+    <article class="policy-card">
+      <h2>Password Safety</h2>
+      <p>Passwords are stored using one-way hashing, and plain text passwords are never saved in the database.</p>
+    </article>
+
+    <article class="policy-card">
+      <h2>Input and Access Controls</h2>
+      <p>Protected routes and server-side checks are used to ensure only authorized users can access sensitive operations.</p>
+    </article>
+
+    <article class="policy-card">
+      <h2>Monitoring and Response</h2>
+      <p>Suspicious events are reviewed quickly, and we can revoke sessions or restrict accounts when abuse is detected.</p>
+    </article>
+
+    <article class="policy-card">
+      <h2>User Best Practices</h2>
+      <p>Use strong passwords, avoid sharing credentials, and contact support immediately if you notice unusual account activity.</p>
+    </article>
+  </section>
+</main>
+
+<%- include('partials/footer') %>
+
+</body>
+</html>

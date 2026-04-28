@@ -4,64 +4,119 @@
     <h1 class="cart-title">Your Food Basket</h1>
 
     <div class="cart-wrapper">
-        <div class="cart-items">
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="product-info">
-                            <img src="/images/pizza-icon.png" alt="Margherita Pizza">
-                            <div>
-                                <h3>Margherita Pizza</h3>
-                                <p>Extra Cheese</p>
-                            </div>
-                        </td>
-                        <td>₹299</td>
-                        <td>
-                            <div class="qty-btn">
-                                <button>-</button>
-                                <span>1</span>
-                                <button>+</button>
-                            </div>
-                        </td>
-                        <td>₹299</td>
-                        <td><i class="fa-solid fa-trash remove-icon"></i></td>
-                    </tr>
-                </tbody>
-            </table>
-            <a href="/explore" class="continue-shopping">← Continue Ordering</a>
+        <div class="cart-items" id="cartItemsContainer">
+            <% if (!items.length) { %>
+                <p class="empty-cart-text">Your cart is empty.</p>
+                <div class="empty-cart-actions">
+                    <a href="/pizza" class="continue-shopping">← Continue Ordering</a>
+                    <a href="/orders" class="continue-shopping">View Order History</a>
+                </div>
+            <% } else { %>
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="cartTableBody">
+                        <% items.forEach((item) => { %>
+                            <tr class="cart-item-row" data-name="<%= item.name %>" data-image="<%= item.image %>" data-price="<%= item.price %>">
+                                <td class="product-info">
+                                    <img src="<%= item.image %>" alt="<%= item.name %>" onerror="this.src='/images/pizza-icon.png'">
+                                    <div>
+                                        <h3><%= item.name %></h3>
+                                    </div>
+                                </td>
+                                <td>₹<%= item.price %></td>
+                                <td>
+                                    <div class="qty-btn">
+                                        <button type="button" class="cart-qty-btn" data-action="dec">-</button>
+                                        <span class="cart-qty-value"><%= item.quantity %></span>
+                                        <button type="button" class="cart-qty-btn" data-action="inc">+</button>
+                                    </div>
+                                </td>
+                                <td class="cart-row-total">₹<%= item.price * item.quantity %></td>
+                                <td>
+                                    <button type="button" class="remove-cart-btn">Remove</button>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+                <a href="/pizza" class="continue-shopping">← Continue Ordering</a>
+                <a href="/orders" class="continue-shopping" style="margin-top: 10px;">View Order History</a>
+            <% } %>
         </div>
 
-        <div class="cart-summary">
-            <h3>Bill Details</h3>
-            <div class="summary-row">
-                <span>Item Total</span>
-                <span>₹299</span>
+        <% if (items.length) { %>
+            <div class="cart-summary" id="cartSummaryBox">
+                <h3>Bill Details</h3>
+                <div class="offer-apply-box">
+                    <label for="offerCodeInput">Offer Code</label>
+                    <div class="offer-apply-row">
+                        <input type="text" id="offerCodeInput" placeholder="Enter offer code" value="<%= appliedOffer ? appliedOffer.code : '' %>">
+                        <button type="button" id="applyOfferBtn">Apply</button>
+                    </div>
+                    <p class="offer-status" id="offerStatusText">
+                        <%= appliedOffer && appliedOffer.valid ? `${appliedOffer.label} applied` : (appliedOffer && appliedOffer.message ? appliedOffer.message : '') %>
+                    </p>
+                </div>
+                <div class="summary-row">
+                    <span>Item Total</span>
+                    <span id="itemTotalValue">₹<%= itemTotal %></span>
+                </div>
+                <div class="summary-row">
+                    <span>Delivery Fee</span>
+                    <span id="deliveryFeeValue">₹<%= deliveryFee %></span>
+                </div>
+                <div class="summary-row">
+                    <span>Govt Taxes</span>
+                    <span id="taxesValue">₹<%= taxes %></span>
+                </div>
+                <div class="summary-row discount-row <%= discount > 0 ? '' : 'hidden-row' %>" id="discountRow">
+                    <span>Discount</span>
+                    <span id="discountValue">-₹<%= discount %></span>
+                </div>
+                <div class="payment-method-box">
+                    <label class="payment-method-label">Payment Method</label>
+                    <div class="payment-method-option">
+                        <input type="radio" id="paymentCod" name="paymentMethod" value="cod" checked>
+                        <label for="paymentCod">
+                            Cash on Delivery
+                            <span>Pay when your order arrives</span>
+                        </label>
+                    </div>
+                </div>
+                <hr>
+                <div class="summary-row total">
+                    <span>Total Amount</span>
+                    <span id="grandTotalValue">₹<%= grandTotal %></span>
+                </div>
+                <button class="checkout-btn" id="checkoutBtn" type="button">Proceed to Checkout</button>
             </div>
-            <div class="summary-row">
-                <span>Delivery Fee</span>
-                <span>₹30</span>
-            </div>
-            <div class="summary-row">
-                <span>Govt Taxes</span>
-                <span>₹15</span>
-            </div>
-            <hr>
-            <div class="summary-row total">
-                <span>Total Amount</span>
-                <span>₹344</span>
-            </div>
-            <button class="checkout-btn">Proceed to Checkout</button>
-        </div>
+        <% } %>
     </div>
 </main>
 
+<div id="orderPlacedModal" class="order-popup-overlay" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.55); align-items: center; justify-content: center; z-index: 1000; padding: 16px;">
+    <div class="order-popup-card" role="dialog" aria-modal="true" aria-labelledby="orderPopupTitle" style="max-width: 420px; width: 100%; background: #ffffff; border-radius: 14px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2); padding: 22px 20px; text-align: center;">
+        <h3 id="orderPopupTitle">Order Placed</h3>
+        <p id="orderPopupMessage" style="margin: 10px 0 16px; color: #444;">Your order is placed.</p>
+        <button type="button" id="orderPopupCloseBtn" style="background: #e23744; color: #fff; border: 0; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-weight: 600;">OK</button>
+    </div>
+</div>
+
+<script id="cartPricingData" type="application/json"><%- JSON.stringify({
+    itemTotal,
+    deliveryFee,
+    taxes,
+    discount,
+    grandTotal,
+    appliedOffer
+}) %></script>
+<script src="/js/cart-page.js"></script>
 <%- include('partials/footer') %>

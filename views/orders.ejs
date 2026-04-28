@@ -1,0 +1,63 @@
+<%- include('partials/header') %>
+
+<main class="cart-container">
+  <h1 class="cart-title">Order History</h1>
+
+  <div class="cart-wrapper">
+    <div class="cart-items">
+      <% if (!orders.length) { %>
+        <p class="empty-cart-text">No past orders found yet.</p>
+        <a href="/pizza" class="continue-shopping">← Start Ordering</a>
+      <% } else { %>
+        <% orders.forEach((order) => { %>
+          <section class="cart-summary" style="margin-bottom: 18px;">
+            <div class="summary-row total" style="margin-bottom: 8px;">
+              <span>Order ID</span>
+              <span><%= String(order._id).slice(-8).toUpperCase() %></span>
+            </div>
+            <div class="summary-row">
+              <span>Date</span>
+              <span><%= new Date(order.createdAt).toLocaleString() %></span>
+            </div>
+            <div class="summary-row">
+              <span>Status</span>
+              <span><%= order.status || 'placed' %></span>
+            </div>
+            <div class="summary-row">
+              <span>Items</span>
+              <span><%= order.items.reduce((sum, item) => sum + (Number(item.quantity) || 0), 0) %></span>
+            </div>
+            <div class="summary-row">
+              <span>Total</span>
+              <span>₹<%= order.pricing?.grandTotal || 0 %></span>
+            </div>
+            <div class="summary-row">
+              <span>Payment Method</span>
+              <span><%= order.paymentMethod === 'cod' ? 'Cash on Delivery' : (order.paymentMethod || 'Cash on Delivery') %></span>
+            </div>
+            <div class="summary-row">
+              <span>Payment Status</span>
+              <span><%= order.paymentStatus === 'cash_on_delivery' ? 'Pay on Delivery' : (order.paymentStatus || 'Pay on Delivery') %></span>
+            </div>
+            <% if (order.appliedOffer?.code) { %>
+              <div class="summary-row">
+                <span>Offer</span>
+                <span><%= order.appliedOffer.code %></span>
+              </div>
+            <% } %>
+            <div style="margin-top: 12px;">
+              <strong>Order Items</strong>
+              <ul style="margin: 8px 0 0; padding-left: 18px;">
+                <% order.items.forEach((item) => { %>
+                  <li><%= item.name %> x <%= item.quantity %> - ₹<%= item.price * item.quantity %></li>
+                <% }) %>
+              </ul>
+            </div>
+          </section>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>

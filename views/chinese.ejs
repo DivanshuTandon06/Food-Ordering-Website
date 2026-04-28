@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title || 'Chinese Menu' %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <%
+    const fallbackItems = [
+      { name: 'Hakka Noodles', price: 209, image: 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=1200&q=80', description: 'Stir-fried noodles with sauces and veggies.' },
+      { name: 'Veg Fried Rice', price: 189, image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=1200&q=80', description: 'Wok tossed rice with spring onions.' },
+      { name: 'Chilli Paneer', price: 259, image: 'https://images.unsplash.com/photo-1701579231374-f9706f97ec2f?auto=format&fit=crop&w=1200&q=80', description: 'Paneer cubes in chili garlic sauce.' }
+    ];
+
+    const restaurantData = restaurant || {
+      name: 'Wok Street',
+      diningRating: 4.1,
+      deliveryRating: 4.3,
+      description: 'Wok-tossed noodles, rice bowls and dim sums',
+      banner1: 'https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1400&q=80'
+    };
+
+    const items = (menu && menu.length) ? menu : fallbackItems;
+  %>
+
+  <main class="pizza-page">
+    <section class="pizza-hero">
+      <div class="pizza-hero-content">
+        <p class="pizza-eyebrow">Wok Fresh</p>
+        <h1><%= restaurantData.name %></h1>
+        <p class="pizza-subtitle"><%= restaurantData.description %></p>
+
+        <div class="pizza-ratings">
+          <div class="pizza-rating-card">
+            <span>Dining</span>
+            <strong><%= restaurantData.diningRating || '4.0' %> ★</strong>
+          </div>
+          <div class="pizza-rating-card">
+            <span>Delivery</span>
+            <strong><%= restaurantData.deliveryRating || '4.0' %> ★</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="pizza-hero-art">
+        <img
+          src="<%= restaurantData.banner1 %>"
+          alt="Chinese food"
+          onerror="this.src='https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1400&q=80'"
+        >
+      </div>
+    </section>
+
+    <section class="pizza-menu-wrap">
+      <div class="pizza-menu-header">
+        <h2>Chinese Specials</h2>
+        <div class="pizza-chip-row" aria-label="Popular tags">
+          <span class="pizza-chip">Wok Tossed</span>
+          <span class="pizza-chip">Schezwan</span>
+          <span class="pizza-chip">Street Style</span>
+          <span class="pizza-chip">Hot & Spicy</span>
+        </div>
+      </div>
+
+      <div class="pizza-grid">
+        <% items.forEach((item) => { %>
+          <article class="pizza-card">
+            <div class="pizza-img-wrap">
+              <img
+                src="<%= item.image %>"
+                class="pizza-img"
+                alt="<%= item.name %>"
+                onerror="this.src='https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=1200&q=80'"
+              >
+            </div>
+
+            <div class="pizza-info">
+              <h3><%= item.name %></h3>
+              <p><%= item.description || 'Spicy and delicious Chinese dish.' %></p>
+              <div class="pizza-card-bottom">
+                <span class="pizza-price">₹ <%= item.price %></span>
+                <div
+                  class="item-cart-controls"
+                  data-name="<%= item.name %>"
+                  data-price="<%= item.price %>"
+                  data-image="<%= item.image %>"
+                >
+                  <button type="button" class="pizza-minus-btn">-</button>
+                  <span class="pizza-item-count">0</span>
+                  <button type="button" class="pizza-add-btn pizza-plus-btn">Add +</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/menu-cart.js"></script>
+  <%- include('partials/footer') %>
+</body>
+</html>
